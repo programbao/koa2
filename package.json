@@ -1,0 +1,22 @@
+{
+  "name": "koa2",
+  "version": "1.0.0",
+  "description": "learning koa2",
+  "main": "server/index.js",
+  "scripts": {
+    "serve": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/programbao/koa2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/programbao/koa2/issues"
+  },
+  "homepage": "https://github.com/programbao/koa2#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
