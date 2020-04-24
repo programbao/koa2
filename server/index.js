@@ -1,11 +1,21 @@
 // 创建koa2对象
 const Koa = require('Koa')
 const app = new Koa()
+// const pug = require('pug')
+const views = require('koa-views')
+const {
+  resolve
+} = require('path')
 
-// 创建中间件
+app.use(views(resolve(__dirname, './views'), {
+  extension: 'pug'
+}))
+
 app.use(async (ctx, next) => {
-  ctx.body = '创建第一个koa2 项目'
-  await next()
+  await ctx.render('index', {
+    you: 'one page',
+    me: 'programbao'
+  })
 })
 
 // 监听端口

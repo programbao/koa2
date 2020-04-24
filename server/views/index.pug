@@ -3,10 +3,44 @@ extends ./layouts/default
 block title
   title Koa Douban 首页
 block content
-  .container
-    .row
-      .col-md-8
-        h1 Hi #{you}
-        p This is #{me}
-      .col-md-4
-        h3 测试动态pug 模板引擎中间件
+  include ./includes/header
+  .container-fluid
+    .sidebar
+    .content
+      .row
+        .col-md-6
+          .card
+            img.card-img-top(src='https://tse1-mm.cn.bing.net/th/id/OET.8c9b47b1d9cf46419480ab6671e8eeee?w=272&h=135&c=7&rs=1&o=5&pid=1.9')
+            .card-body
+              h4.card-title 这是电影标题
+              p.card-desc 这是电影描述
+            .card-footer
+              small.text-muted 1 天前更新   
+        .col-md-6
+          .card
+          img.card-img-top(src='https://tse1-mm.cn.bing.net/th/id/OET.8c9b47b1d9cf46419480ab6671e8eeee?w=272&h=135&c=7&rs=1&o=5&pid=1.9')
+          .card-body
+            h4.card-title 这是电影标题
+            p.card-desc 这是电影描述
+          .card-footer
+            small.text-muted 1 天前更新
+      .row
+        .col-md-6
+          .card
+            img.card-img-top(src='https://tse1-mm.cn.bing.net/th/id/OET.8c9b47b1d9cf46419480ab6671e8eeee?w=272&h=135&c=7&rs=1&o=5&pid=1.9')
+            .card-body
+              h4.card-title 这是电影标题
+              p.card-desc 这是电影描述
+            .card-footer
+              small.text-muted 1 天前更新   
+        .col-md-6
+          .card
+          img.card-img-top(src='https://tse1-mm.cn.bing.net/th/id/OET.8c9b47b1d9cf46419480ab6671e8eeee?w=272&h=135&c=7&rs=1&o=5&pid=1.9')
+          .card-body
+            h4.card-title 这是电影标题
+            p.card-desc 这是电影描述
+          .card-footer
+            small.text-muted 1 天前更新
+
+
+
