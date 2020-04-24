@@ -69,5 +69,11 @@ const sleep = time => new Promise(resolve => {
 
   // 拿到数据后关闭浏览器
   browser.close()
-  console.log(result)
+
+  // 将结果发送出去
+  process.send({
+    result
+  })
+  // 退出进程
+  process.exit(0)
 })()
