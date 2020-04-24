@@ -1,11 +1,21 @@
 // 创建koa2对象
 const Koa = require('Koa')
 const app = new Koa()
-
+const ejs = require('ejs')
+const pug = require('pug')
+const {
+  htmlTpl,
+  ejsTpl,
+  pugTpl
+} = require('./tpl')
 // 创建中间件
 app.use(async (ctx, next) => {
-  ctx.body = '创建第一个koa2 项目'
-  await next()
+  // 设置请求头为HTML
+  ctx.type = 'text/html;charset="utf-8"'
+  ctx.body = pug.render(pugTpl, {
+    you: 'one page',
+    me: 'programbao'
+  })
 })
 
 // 监听端口
