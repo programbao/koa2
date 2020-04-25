@@ -19,6 +19,7 @@
   "dependencies": {
     "koa": "^2.11.0",
     "koa-views": "^6.2.1",
+    "mongoose": "^5.9.10",
     "pug": "^2.0.4",
     "puppeteer": "^3.0.1",
     "request": "^2.88.2",
