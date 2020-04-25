@@ -1,4 +1,9 @@
 const mongoose = require('mongoose')
+const {
+  resolve
+} = require('path')
+// 匹配规则库 --- 可以匹配一定类型中的所有文件
+const glob = require('glob')
 // 数据库的地址
 const db = 'mongodb://localhost/douban-trailer'
 // 连接参数
@@ -7,7 +12,13 @@ const pa = {
   useNewUrlParser: true
 }
 mongoose.Promise = global.Promise
-
+// 引入执行所有的Schema模型
+exports.initSchemas = () => {
+  // 同步加载所有的schema下的文件
+  // 获取所有js文件后，同步的加载进来
+  // 通过forEach 进行逐个加载进来
+  glob.sync(resolve(__dirname, './schema', '**/*.js')).forEach(require)
+}
 // 导出链接 --- 方法
 exports.connect = () => {
   // 连接错误的次数

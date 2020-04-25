@@ -1,19 +1,27 @@
 // 创建koa2对象
 const Koa = require('Koa')
 const app = new Koa()
-// const pug = require('pug')
+const mongoose = require('mongoose')
 const views = require('koa-views')
 const {
   resolve
 } = require('path')
 const {
-  connect
+  connect,
+  initSchemas
 } = require('./database/init')
 
 // 连接调用数据库
 ;
 (async () => {
   await connect()
+  // 连接数据库后初始化所有的schema
+  initSchemas()
+
+  // 使用一下数据库
+  const Movie = mongoose.model('Movie')
+  const movies = await Movie.find({})
+  console.log(movies);
 
 })()
 
