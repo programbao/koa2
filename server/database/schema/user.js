@@ -49,11 +49,11 @@ const userSchema = new Schema({
 })
 
 // 创建一个虚拟字段
-userSchema.virtual('isLocked').get(() => {
+userSchema.virtual('isLocked').get(function () {
   return !!(this.lockUntil && this.lockUntil > Date.now())
 })
 // 最新时间更新
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next) {
   // 判断当前的实体数据是不是新的
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
@@ -63,7 +63,7 @@ userSchema.pre('save', next => {
   next()
 })
 // 密码加严
-userSchema.pre('save', next => {
+userSchema.pre('save', function (next) {
   // 判断密码是否变化了
   if (!user.isModified('password')) return next()
   // 加严加密后生成密码

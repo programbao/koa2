@@ -1,7 +1,9 @@
 const cp = require('child_process') // 子进程
 const {
   resolve
-} = require('path');
+} = require('path')
+const mongoose = require('mongoose')
+const Movie = mongoose.model('Movie');
 (async () => {
   const script = resolve(__dirname, '../crawler/trailer-list.js')
   // 子进程对象 --- 参数一： 爬虫脚本 ; 
@@ -26,6 +28,21 @@ const {
   // 监听消息
   child.on('message', data => {
     let result = data.result
-    console.log(result)
+
+    // 遍历存储数据
+    result.forEach(async item => {
+      // 查找数据是否存储过了
+      let movie = await Movie.findOne({
+        doubanId: item.doubanId
+      })
+
+      // 如果没有存储数据就存储
+      if (!movie) {
+        movie = new Movie(item)
+        // 保存
+        await movie.save()
+      }
+
+    });
   })
 })()

@@ -17,12 +17,8 @@ const {
   await connect()
   // 连接数据库后初始化所有的schema
   initSchemas()
-
-  // 使用一下数据库
-  const Movie = mongoose.model('Movie')
-  const movies = await Movie.find({})
-  console.log(movies);
-
+  // require('./tasks/movie')
+  require('./tasks/api')
 })()
 
 

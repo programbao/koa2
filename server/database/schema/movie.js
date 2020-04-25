@@ -47,7 +47,7 @@ const movieSchema = new Schema({
 })
 
 // 中间件的处理调用 --- 可以对单条数据进行操作
-movieSchema.pre('save', next => {
+movieSchema.pre('save', function (next) {
   // 判断当前的实体数据是不是新的
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()

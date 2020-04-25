@@ -29,7 +29,7 @@ const categorySchema = new Schema({
 })
 
 // 中间件的处理调用 --- 可以对单条数据进行操作
-categorySchema.pre('save', next => {
+categorySchema.pre('save', function (next) {
   // 判断当前的实体数据是不是新的
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
