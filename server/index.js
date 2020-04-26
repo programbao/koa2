@@ -10,7 +10,8 @@ const {
   connect,
   initSchemas
 } = require('./database/init')
-
+// 引入路由
+const router = require('./routes')
 // 连接调用数据库
 ;
 (async () => {
@@ -21,6 +22,11 @@ const {
   require('./tasks/api')
 })()
 
+
+// 激活路由 --- koa-router 的固定用法
+app
+  .use(router.routes())
+  .use(router.allowedMethods()) // 允许最基本的方法
 
 app.use(views(resolve(__dirname, './views'), {
   extension: 'pug'
