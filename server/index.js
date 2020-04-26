@@ -11,7 +11,7 @@ const {
   initSchemas
 } = require('./database/init')
 // 引入路由
-const router = require('./routes')
+const router = require('./routes/movie')
 // 连接调用数据库
 ;
 (async () => {
