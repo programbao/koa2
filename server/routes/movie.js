@@ -1,17 +1,24 @@
-const Router = require('koa-router')
-const mongoose = require('mongoose')
-const router = new Router()
-
+import {
+  controller,
+  get,
+  post,
+  put
+} from "../lib/decorator";
+import {
+  getAllMovies,
+  getRelativeMovies,
+  getMovieDetail
+} from "../service/movie";
 // 控制器装饰器
 @controller('/api/v0/movies')
 export class movieController {
   @get('/')
   async getMovies(ctx, next) {
-    const Movie = mongoose.model('Movie')
-    // sort 排序 --- createAt 是从最近到最远
-    const movies = await Movie.find({}).sort({
-      'meta.createAt': -1
-    })
+    const {
+      type,
+      year
+    } = ctx.query
+    const movies = await getAllMovies(type, year)
 
     ctx.body = {
       movies
@@ -20,16 +27,17 @@ export class movieController {
   // 拿到单个数据 --- :id 表示id变量
   @get('/:id')
   async getMoviesDetail(ctx, next) {
-    const Movie = mongoose.model('Movie')
+
     const id = ctx.params.id
-    const movies = await Movie.find({
-      _id: id
-    })
+    const movie = await getMovieDetail(id)
+    const relativeMovies = await getRelativeMovies(movie)
 
     ctx.body = {
-      movies
+      data: {
+        movie,
+        relativeMovies
+      },
+      success: true
     }
   }
 }
-// 暴露router
-module.exports = router
