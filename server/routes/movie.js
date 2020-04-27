@@ -1,14 +1,14 @@
-import {
+const {
   controller,
   get,
   post,
   put
-} from "../lib/decorator";
-import {
+} = require("../lib/decorator");
+const {
   getAllMovies,
   getRelativeMovies,
   getMovieDetail
-} from "../service/movie";
+} = require("../service/movie");
 // 控制器装饰器
 @controller('/api/v0/movies')
 export class movieController {

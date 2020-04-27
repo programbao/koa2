@@ -1,12 +1,9 @@
-import Router from "koa-router"
-import {
+const Router = require("koa-router")
+const {
   resolve
-} from 'path'
-import {
-  isArray
-} from "util"
-import _ from 'lodash'
-import glob from 'glob'
+} = require('path')
+const _ = require('lodash')
+const glob = require('glob')
 // 声明一个symbol类型
 const symbolPrefix = Symbol('prefix')
 
